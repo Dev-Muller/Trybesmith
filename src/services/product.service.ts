@@ -7,6 +7,12 @@ async function productCreate(name: string, price: string, orderId: number): Prom
   return { status: 201, data: newProduct };
 }
 
+async function getAllProducts(): Promise<Status> {
+  const products = await ProductModel.findAll();
+  return { status: 200, data: products };
+}
+
 export default {
   productCreate,
+  getAllProducts,
 };  
