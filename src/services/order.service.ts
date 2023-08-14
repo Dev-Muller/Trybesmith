@@ -11,7 +11,7 @@ async function getAllOrder(): Promise<Status> {
     const productIds = order.dataValues.productIds?.map((product) => product.id);
     return { ...order.dataValues, productIds };
   });
-  // console.log(mapOrder);
+  console.log(mapOrder);
   return { status: 200, data: mapOrder };
 }
 

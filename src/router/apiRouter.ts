@@ -9,6 +9,7 @@ import {
   priceString,
   priceLength,
 } from '../middlewares/product.middlewares';
+import loginController from '../controller/login.controller';
 
 const apiRouter = Router();
 
@@ -26,5 +27,7 @@ apiRouter.post(
 apiRouter.get('/products', productController.getAllProducts);
 
 apiRouter.get('/orders', orderController.getAllOrder);
+
+apiRouter.post('/login', loginController.login);
 
 export default apiRouter;
