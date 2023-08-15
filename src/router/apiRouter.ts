@@ -10,6 +10,14 @@ import {
   priceLength,
 } from '../middlewares/product.middlewares';
 import loginController from '../controller/login.controller';
+import {
+  validateToken,
+  userIdRequired,
+  userIdNumber,
+  productIdsRequired,
+  productIdsArray,
+  productIdsNumber,
+} from '../middlewares/user.middlewares';
 
 const apiRouter = Router();
 
@@ -29,5 +37,16 @@ apiRouter.get('/products', productController.getAllProducts);
 apiRouter.get('/orders', orderController.getAllOrder);
 
 apiRouter.post('/login', loginController.login);
+
+apiRouter.post(
+  '/orders', 
+  validateToken,
+  userIdRequired,
+  userIdNumber,
+  productIdsRequired,
+  productIdsArray,
+  productIdsNumber,
+  orderController.createOrder,
+);
 
 export default apiRouter;
