@@ -27,7 +27,6 @@ async function createOrder(userId: number, productIds: Array<number>): Promise<S
     };
   }
   const newOrder = await OrderModel.create({ userId });
-  console.log(newOrder);
   
   await ProductModel.update({ orderId: newOrder.dataValues.id }, {
     where: {
