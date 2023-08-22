@@ -18,7 +18,8 @@ async function getAllOrder(): Promise<Status> {
 }
 
 async function createOrder(userId: number, productIds: Array<number>): Promise<Status> {
-  const user = UserModel.findByPk(userId);
+  const user = await UserModel.findByPk(userId);
+  
   if (!user) {
     return {
       status: 404,
@@ -26,12 +27,14 @@ async function createOrder(userId: number, productIds: Array<number>): Promise<S
     };
   }
   const newOrder = await OrderModel.create({ userId });
-
+  console.log(newOrder);
+  
   await ProductModel.update({ orderId: newOrder.dataValues.id }, {
     where: {
       id: { [Op.in]: productIds },
     },
   });
+  // console.log('aaaaa');
 
   return { status: 201, data: { userId, productIds } };
 }

@@ -28,8 +28,8 @@ async function userIdRequired(req: Request, res: Response, next: NextFunction): 
 
 async function userIdNumber(req: Request, res: Response, next: NextFunction):Promise<unknown> {
   const { userId } = req.body;
-  if (typeof userId === 'number') {
-    return res.status(42).json({ message: '"userId" must be a number' });
+  if (typeof userId !== 'number') {
+    return res.status(422).json({ message: '"userId" must be a number' });
   }
   next();
 }
